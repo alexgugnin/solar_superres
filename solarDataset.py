@@ -39,7 +39,6 @@ class SolarDataset(Dataset):
 
     # Transform if necessary
     if self.transform:
-      #return self.transform(input)[0].unsqueeze(dim=0), self.transform(target)[0].unsqueeze(dim=0) #[0] and unsqueeze for 1 wavelength only
       return self.transform(input), self.transform(target)
     else:
       return input, target
