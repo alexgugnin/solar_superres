@@ -1,6 +1,7 @@
 import torch
 
 def train_step(model, data_loader, loss_func, optimizer, device):
+  '''Func to perform forward propagation and backward weights adjustments'''
   train_loss = 0
   nan_counter = 0
   for x, Y in data_loader:
@@ -22,11 +23,11 @@ def train_step(model, data_loader, loss_func, optimizer, device):
     del loss, y_pred, x, Y
 
   train_loss /= (len(data_loader)-nan_counter)
-  #print(f"Epoch Train_loss: {train_loss}")
 
   return train_loss
 
 def valid_step(model, data_loader, loss_func, device):
+  '''Func to perform validation on corresponding dataset'''
   valid_loss = 0
   nan_counter = 0
   model.eval()
@@ -44,7 +45,6 @@ def valid_step(model, data_loader, loss_func, device):
       del loss, valid_pred, x, Y
 
     valid_loss /= (len(data_loader)-nan_counter)
-  #print(f"Validation_loss: {valid_loss}")
 
   return valid_loss
 
